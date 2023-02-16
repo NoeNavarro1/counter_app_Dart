@@ -36,28 +36,40 @@ class _CounterScreenState extends State<CounterScreen> {
       ],
     )),
     floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    floatingActionButton: Row(
+    floatingActionButton: CustomFloatingActionButton());
+  }
+}
+
+
+class CustomFloatingActionButton extends StatelessWidget {
+  const CustomFloatingActionButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         FloatingActionButton(
           backgroundColor:const Color.fromARGB(255, 37, 37, 36),
           foregroundColor:const Color.fromARGB(255, 226, 18, 18),
-         onPressed: () => setState(() => contador++),
+         onPressed: null,
           child: Icon(Icons.exposure_plus_1),
         ),
           FloatingActionButton(
           backgroundColor:const Color.fromARGB(255, 37, 37, 36),
           foregroundColor:const Color.fromARGB(255, 226, 18, 18),
-          onPressed: () => setState(() => contador = 0),
+          onPressed:null,
           child: Icon(Icons.restart_alt),
         ),
                 FloatingActionButton(
           backgroundColor:const Color.fromARGB(255, 37, 37, 36),
           foregroundColor:const Color.fromARGB(255, 226, 18, 18),
-          onPressed: () => setState(() => contador--),
+          onPressed:null,
           child: Icon(Icons.exposure_minus_1),
         ),        
       ],
-    ));
+    );
   }
 }
