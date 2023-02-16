@@ -9,6 +9,22 @@ class CounterScreen extends StatefulWidget{
 
 class _CounterScreenState extends State<CounterScreen> {
   int contador = 0;
+
+  void incrementar(){
+    contador++;
+    setState(() {});
+  }
+
+  void decrementar(){
+    contador--;
+    setState(() {});
+  }
+
+  void reiniciar(){
+    contador = 0;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     const TextStyle estiloTexto = TextStyle(
@@ -36,14 +52,22 @@ class _CounterScreenState extends State<CounterScreen> {
       ],
     )),
     floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    floatingActionButton: CustomFloatingActionButton());
+    floatingActionButton: CustomFloatingActionButton(
+      decrease: decrementar, 
+      increase: incrementar,
+      reset: reiniciar, 
+      ));
   }
 }
 
 
 class CustomFloatingActionButton extends StatelessWidget {
+  final Function increase;
+  final Function decrease;
+  final Function reset;
+  
   const CustomFloatingActionButton({
-    Key? key,
+    Key? key, required this.increase, required this.decrease, required this.reset,
   }) : super(key: key);
 
   @override
@@ -54,19 +78,19 @@ class CustomFloatingActionButton extends StatelessWidget {
         FloatingActionButton(
           backgroundColor:const Color.fromARGB(255, 37, 37, 36),
           foregroundColor:const Color.fromARGB(255, 226, 18, 18),
-         onPressed: null,
+         onPressed: () => increase(),
           child: Icon(Icons.exposure_plus_1),
         ),
           FloatingActionButton(
           backgroundColor:const Color.fromARGB(255, 37, 37, 36),
           foregroundColor:const Color.fromARGB(255, 226, 18, 18),
-          onPressed:null,
+          onPressed:() => reset(),
           child: Icon(Icons.restart_alt),
         ),
                 FloatingActionButton(
           backgroundColor:const Color.fromARGB(255, 37, 37, 36),
           foregroundColor:const Color.fromARGB(255, 226, 18, 18),
-          onPressed:null,
+          onPressed:() => decrease(),
           child: Icon(Icons.exposure_minus_1),
         ),        
       ],
